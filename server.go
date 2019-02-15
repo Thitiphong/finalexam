@@ -36,12 +36,10 @@ func getCustomerByIDHandler(c *gin.Context) {
 
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	stmt, err := database.Conn().Prepare("SELECT id, name, email, status FROM customers WHERE id=$1")
+	row, err := database.SelectByKeyCustomer(id)
 	if err != nil {
-		log.Fatal("cann't prepare query one row statement", err)
+		c.AbortWithStatusJSON(http.StatusNotFound, gin.H{"message": "not found"})
 	}
-
-	row := stmt.QueryRow(id)
 
 	t := model.Customer{}
 	if err := row.Scan(&t.ID, &t.Name, &t.Email, &t.Status); err != nil {

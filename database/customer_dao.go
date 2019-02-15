@@ -22,6 +22,16 @@ func InsertCustomer(name, email, status string) *sql.Row {
 	return db.QueryRow("insert into customers (name, email, status) values ($1, $2, $3) returning id", name, email, status)
 }
 
+func SelectByKeyCustomer(id int) (*sql.Row, error) {
+
+	stmt, err := db.Prepare("SELECT id, name, email, status FROM customers WHERE id=$1")
+	if err != nil {
+		return nil, err
+	}
+
+	return stmt.QueryRow(id), nil
+}
+
 // func UpdateCustomer(name, email, status string) *sql.Row {
 // 	stmt, err := db.Prepare("UPDATE customers SET  name=$1, email=$2 ,status=$3  WHERE id=$1;")
 
