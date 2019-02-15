@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Thitiphong/finalexam/model"
+	"github.com/Thitiphong/finalexam/customer"
 
 	_ "github.com/lib/pq"
 )
@@ -45,7 +45,7 @@ func DeleteCustomer(id int) (sql.Result, error) {
 	return stmt.Exec(id)
 }
 
-func UpdateCustomer(id int, t model.Customer) (sql.Result, error) {
+func UpdateCustomer(id int, t customer.Customer) (sql.Result, error) {
 	t.ID = id
 
 	stmt, err := db.Prepare("UPDATE customers SET  name=$2, email=$3 ,status=$4  WHERE id=$1;")

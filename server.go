@@ -8,12 +8,12 @@ import (
 
 	"github.com/Thitiphong/finalexam/database"
 
-	"github.com/Thitiphong/finalexam/model"
+	"github.com/Thitiphong/finalexam/customer"
 	"github.com/gin-gonic/gin"
 )
 
 func createCustomerHandler(c *gin.Context) {
-	var t model.Customer
+	var t customer.Customer
 
 	if err := c.ShouldBindJSON(&t); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -41,7 +41,7 @@ func getCustomerByIDHandler(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusNotFound, gin.H{"message": "not found"})
 	}
 
-	t := model.Customer{}
+	t := customer.Customer{}
 	if err := row.Scan(&t.ID, &t.Name, &t.Email, &t.Status); err != nil {
 		c.AbortWithStatusJSON(http.StatusNotFound, gin.H{"message": "not found"})
 	} else {
@@ -70,9 +70,9 @@ func getCustomerHandler(c *gin.Context) {
 		log.Fatal("can't query all customers", err)
 	}
 
-	var cs = []model.Customer{}
+	var cs = []customer.Customer{}
 	for rows.Next() {
-		t := model.Customer{}
+		t := customer.Customer{}
 		err := rows.Scan(&t.ID, &t.Name, &t.Email, &t.Status)
 		if err != nil {
 			log.Fatal("can't Scan row into variable", err)
@@ -84,7 +84,7 @@ func getCustomerHandler(c *gin.Context) {
 func updateCustomerHandler(c *gin.Context) {
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	var t model.Customer
+	var t customer.Customer
 	if err := c.ShouldBindJSON(&t); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
