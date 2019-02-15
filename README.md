@@ -1,4 +1,11 @@
-# finalexam
+# Final Exam
+
+A Test Result (Postman)
+
+![Test Result](https://raw.githubusercontent.com/thitiphong/finalexam/master/test_result/postman.png)
+
+
+A Test Result (Newman)
 
 ```sh
 $ brew install node
@@ -11,8 +18,4 @@ $ newman run customers.postman_collection.json
 
 ![Test Result](https://raw.githubusercontent.com/thitiphong/finalexam/master/test_result/newman.png)
 
-
-.A Test Result
-
-![Test Result](https://raw.githubusercontent.com/thitiphong/finalexam/master/test_result/postman.png)
 
