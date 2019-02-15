@@ -1,7 +1,15 @@
 # finalexam
 
+----
+$ brew install node
 
-newman run customers.postman_collection.json 
+$ npm install -g newman
+
+$ newman run customers.postman_collection.json 
+
+----
+![Test Result](https://raw.githubusercontent.com/thitiphong/finalexam/master/newman.png)
+
 
 .A Test Result
 
