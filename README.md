@@ -5,7 +5,5 @@ newman run customers.postman_collection.json
 
 .A Test Result
 
-
-image::test_result.png[]
-
+![Test Result](https://raw.githubusercontent.com/thitiphong/finalexam/master/test_result.png)
 
